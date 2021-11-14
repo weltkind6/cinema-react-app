@@ -1,22 +1,31 @@
 import React, {useEffect} from 'react';
-import MovieListening from "../MovieDetails/MovieListening";
 import movieApi from "../../common/api/movieApi";
 import {apiKey} from "../../common/api/movieApiKey";
+import {useDispatch} from "react-redux";
+import {addMovies} from "../../feauters/movies/movieSlice";
+import MovieLists from "../MovieLists/MovieLists";
 
 const Home = () => {
 
+    const dispatch = useDispatch()
+    const movieText = 'Harry'
+
     useEffect(() => {
-        const movieText = 'Harry'
+
         const fetchMovies = async () => {
-            const response = await movieApi.get(`?apiKey=${apiKey}&s=${movieText}&type=movie`)
-            console.log(response)
+            const response = await movieApi
+                .get(`?apiKey=${apiKey}&s=${movieText}&type=movie`)
+                .catch(err => console.log('Error!', err))
+            dispatch(addMovies(response.data))
         }
-        fetchMovies().catch(err => console.log('Error!', err))
+
+        fetchMovies()
+
     }, [])
 
     return (
         <div className='banner-img'>
-            <MovieListening/>
+            <MovieLists/>
         </div>
     );
 };
