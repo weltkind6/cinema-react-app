@@ -4,7 +4,7 @@ import Header from "./componentns/Header/Header";
 import Footer from "./componentns/Footer/Footer";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from "./componentns/Home/Home";
-import MovieLists from "./componentns/MovieLists/MovieLists";
+import MovieDetails from "./componentns/MovieDetails/MovieDetails";
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
                 <Header/>
                 <Routes>
                     <Route path='/' exact element={<Home/>}/>
-                    <Route path='/movie/:imdbID' element={<MovieLists/>}/>
+                    <Route path='/movie/:imdbID' element={<MovieDetails/>}/>
                 </Routes>
                 <Footer/>
             </div>

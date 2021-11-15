@@ -16,11 +16,19 @@ export const fetchApiShows = createAsyncThunk('shows/fetchApiMovies', async () =
     return response.data
 })
 
+export const fetchApiMoviesOrDetails = createAsyncThunk('movies/fetchApiMoviesOrDetails', async (id) => {
+    const response = await movieApi
+        .get(`?apiKey=${apiKey}&i=${id}&Plot=full`)
+    return response.data
+})
+
 
 const initialState = {
     movies: {},
-    shows: {}
+    shows: {},
+    selectedMovieOrShow: {}
 }
+
 
 const movieSlice = createSlice({
     name: 'movies', // reducer name
@@ -28,12 +36,14 @@ const movieSlice = createSlice({
     reducers: {
         addMovies: (state, {payload}) => { //actionCreator
             state.movies = payload
-        }
+        },
+        removeSelectedMovieOrShow: state => {
+            state.selectedMovieOrShow = {}
+        },
     },
     extraReducers: {
         [fetchApiMovies.pending]: () => {
             console.log('Pending...')
-
         },
         [fetchApiMovies.fulfilled]: (state, {payload}) => {
             console.log('Fetched!')
@@ -43,14 +53,18 @@ const movieSlice = createSlice({
             console.log('Shows!')
             return {...state, shows: payload}
         },
+        [fetchApiMoviesOrDetails.fulfilled]: (state, {payload}) => {
+            console.log('You see the details!')
+            return {...state, selectedMovieOrShow: payload}
+        },
         [fetchApiMovies.rejected]: () => {
             console.log('Rejected!')
-
         }
     }
 })
 
-export const {addMovies} = movieSlice.actions
+export const {removeSelectedMovieOrShow} = movieSlice.actions
 export default movieSlice.reducer
 export const getAllMovies = state => state.movies.movies
 export const getAllShows = state => state.movies.shows
+export const getSelectedMovieOrShow = state => state.movies.selectedMovieOrShow
