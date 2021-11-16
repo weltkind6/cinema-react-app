@@ -6,10 +6,13 @@ import {fetchApiMovies, fetchApiShows} from "../../feauters/movies/movieSlice";
 const Home = () => {
 
     const dispatch = useDispatch()
+    const movies = 'Harry'
+    const shows = 'Friends'
 
-    useEffect(() => {
-        dispatch(fetchApiMovies())
-        dispatch(fetchApiShows())
+        useEffect
+    (() => {
+        dispatch(fetchApiMovies(movies))
+        dispatch(fetchApiShows(shows))
     }, [dispatch])
 
     return (

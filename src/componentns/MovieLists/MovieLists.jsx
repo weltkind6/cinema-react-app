@@ -33,9 +33,6 @@ const MovieLists = () => {
                     <Slider {...Settings}>{renderList}</Slider>
                 </div>
             </div>
-            <button type="button" data-role="none" className="slick-arrow slick-prev"
-                    style={{display: 'block'}}> Previous
-            </button>
             <div className="shows-list">
                 <h2>Shows</h2>
                 <div className='movie-container'>
