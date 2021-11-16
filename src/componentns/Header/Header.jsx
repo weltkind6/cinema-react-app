@@ -5,9 +5,7 @@ import './Header.scss'
 const Header = () => {
     return (
        <div className='header'>
-           <Link to='/'>
-               <div className="logo">Movie app</div>
-           </Link>
+               <Link to='/' className="logo">Movie app</Link>
            <div className="user-img">
                <img src="https://currentcapitalsecuritiesltd.com/images/customer1.png" alt="user"/>
            </div>
